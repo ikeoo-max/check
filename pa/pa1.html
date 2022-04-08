@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=zwZNGLdVeEwvRH7LlGn2tFIS5hmxJSJo1lCGVn4L1aoFLhCoYH9NjUp5hxbZvHU_ItwY5Zpuw_Q7QCkcLKqRqyX_ezpMIO4BYAus7fTr3M0" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jc2V3ZWIudWNzZC5lZHUvY2xhc3Nlcy93aTIyL2NzZTEyNy1hL3BhL3BhMS5odG1s"/><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=g_6zt4f3avdChPgOWEb69uR-ougwV5BMVplLe660v4ueR-Xb-Gl6W6s1M_jd_HFw-9rxSAeKVbQDGtdn7tlYGw" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly96emphcy5naXRodWIuaW8vY3NlMTI3c3AyMi9wYS9wYTEuaHRtbA"/><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <title>CSE 127 - PA1: Buffer Overflows</title>
@@ -28,12 +28,12 @@
         <div class="container">
             <div class="row">
                 <div>
-                    <h1>PA1: Buffer Overflows <span class="text-muted courseyear"><small>Winter 2022</small></span>
+                    <h1>PA1: Buffer Overflows <span class="text-muted courseyear"><small>Spring 2022</small></span>
                     </h1>
 
                     <div class="alert alert-primary" role="alert">
                         <b> Total Points: 20 (+ 4 optional extra credit)</b><br>
-                        <b> Due: Thursday, January 20 at 6:00pm</b>
+                        <b> Due: Sunday, April 17 at 6:00pm</b>
                     </div>
 
                     <div class="md-content">
@@ -72,10 +72,9 @@
                                 native code.</li>
                             <li>Understand the severity of buffer overflows and the necessity of
                                 standard defenses.</li>
-                            <li>Gain familiarity with machine architecture and assembly language.</li>
                             <li>Understand the mechanics of buffer overflow exploitation.</li>
                         </ul>
-                        <h2 id="read-this-first">Read this First</h2>
+                        <h2 id="read-this-first">Read this first!</h2>
                         <p>This project asks you to develop attacks and test them in a virtual
                             machine you control. Attempting the same kinds of attacks against
                             others’ systems without authorization is prohibited by law and
@@ -85,6 +84,26 @@
                             property rights of others at all times, <em>or else you will fail the
                                 course.</em>
                         </p>
+                        <hr>
+                        <h2 id="index">Index</h2>
+                        <ul>
+                            <li><a href="#setup">Setup</a></li>
+                            <li><a href="#resources-and-guidelines">Resources and Guidelines</a></li>
+                            <li><a href="#targets">Targets</a></li>
+                            <li><a href="#submission-details">Submission Details</a></li>
+                            <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                        </ul>
+
+                        <hr>
+
+                        <em>
+                            <p>Alice's company <strong>Security4All</strong> is having one of their periodic security audits taking place today. The software used for this purpose (from an external firm called <a href="https://www.mandiant.com/">Mandiant</a>) has flagged a bunch of code snippets across various <strong>Security4All</strong> projects as potentially being unsafe. Unfortunately for Alice, 8 of the flagged threats belongs to projects under her ownership. However, before Alice can patch the security bugs, she wants to verify that the threats detected are indeed exploitable, and not false positivies.</p>
+
+                        <p>Alice was super happy with your assistance helping her fix the compiler bug last week, and asks for your help again. Your task is to help Alice develop working exploits for each of the threats flagged by the software tool.</p>
+
+                        <p>Happy Hacking!</p>
+                        </em>
+
                         <hr>
                         <h2 id="setup">Setup</h2>
                         <p>Buffer-overflow exploitation depends on details of the target system.
@@ -132,7 +151,7 @@
                             <li>
                                 <p>Download the assignment <a href="assets/pa1-starter.tar.gz">starter code</a> inside
                                     the VM with the command
-                                    <code>wget https://cseweb.ucsd.edu/classes/wi22/cse127-a/pa/assets/pa1-starter.tar.gz</code>.
+                                    <code>wget https://zzjas.github.io/cse127sp22/pa/assets/pa1-starter.tar.gz</code>.
                                     To unzip the assignment, you can use <code>tar -xf pa1-starter.tar.gz</code>.
                                     You should see a <code>targets</code> directory which contains the assignment.
                                 </p>
@@ -141,31 +160,33 @@
                                 <p>Run <code>./build.sh</code>. It will prompt you for usernames. Use the usernames
                                     registered in your gradescope accounts.
                                     For example, if your gradescope looks like:</p>
-                                <img src="assets/gradescope_email.png"
-                                    alt="an image of gradescope with the email nheninger@ucsd.edu">
+                                <img src="assets/gradescope_email_george.png"
+                                    alt="an image of gradescope with the email gobaido@ucsd.edu">
 
-                                <p>Then you would input <code>nheninger</code>.
+                                <p>Then you would input <code>gobaido</code>.
 
                                     If you're in a group, enter both usernames. The order of usernames doesn't
                                     matter.<br>
 
-                                    For example, if the usernames are <code>nheninger</code> and <code>dstefan</code>,
+                                    For example, if the usernames are <code>gobaido</code> and <code>svrao</code>,
                                     running <code>./build.sh</code> should generate a cookie file. Take a look at its
                                     contents.</p>
                                 <div><pre><code>cse127@cse127:~/targets$ cat cookie
-nheninger dstefan
-2276</code></pre>
+gobaido svrao
+4107</code></pre>
                                 </div>
                                 <p>If you upload that to gradescope, you can confirm that the cookie you generate is the
-                                    one we expect.</p>
+                                    one we expect. If not, an error is generated as shown in the screenshot below. </p>
 
-                                <img src="assets/bad_cookie.png"
+                                <img src="assets/cookie_mismatch.png"
                                     alt="an image of a cookie that doesn't match what we expect">
 
-                                <p><strong>Make sure you have correctly generated your cookie file before you start
-                                        hacking.</strong>
-                                </p>
+                                    <p>Also, if you are working in a team of 2, make sure to add both you and your teammate on your gradescope submission using the "Add Group Member" button (the cookie test case would only pass once both have been added). </p>
+                                <h5><u><strong>Please make sure you have correctly generated your cookie file before you start
+                                        hacking!</strong></u>
+                                </h5>
                             </li>
+                            <br/>
                             <li>
                                 If you need to recompile your targets, you will need to run
                                 <code>./build.sh clean</code> before you run <code>./build.sh</code> again.
@@ -186,11 +207,9 @@ nheninger dstefan
                         </p>
                         <h3 id="gdb">GDB</h3>
                         <p>You will make use of the GDB debugger for dynamic analysis within the
-                            VM. Useful commands include <code>disassemble</code>, <code>info reg</code>, <code>x</code>,
-                            and <code>stepi</code>. See
-                            the GDB help for details, and don’t be afraid to experiment.
+                            VM, hopefully leveraging your learnings from PA0.
                             <a href="https://users.ece.utexas.edu/~adnan/gdb-refcard.pdf">This</a> quick
-                            reference may also be useful.
+                            reference on GDB may help refresh your memory.
                         </p>
                         <h3 id="x86-assembly">x86 assembly</h3>
                         <p>These are many good references for x86, but note
@@ -205,7 +224,7 @@ nheninger dstefan
                             to identify the addresses the exploit has changed and work from there, i.e. make sure the
                             addresses you
                             intended to change have actually been changed and nothing else.</p>
-                        <h3 id="cpu-virtualization">CPU Virtualization</h3>
+                        <!-- <h3 id="cpu-virtualization">CPU Virtualization</h3>
                         <p>
                             VirtualBox requires an x86(-64) processor with hardware-assisted virtualization;
                             such feature is called VT-x on Intel processors and AMD-V on AMD processors.
@@ -226,11 +245,14 @@ nheninger dstefan
                         didn't choose the correct security settings when you were installing VirtualBox.
                         Take a look at the top answer at <a
                             href="https://stackoverflow.com/questions/52689672/virtualbox-ns-error-failure-0x80004005-macos">https://stackoverflow.com/questions/52689672/virtualbox-ns-error-failure-0x80004005-macos</a>.
+                        -->
+
                         <hr>
 
                         <h2 id="targets">Targets</h2>
-                        <p>The target programs for this project are simple, short C programs with
-                            (mostly) clear security vulnerabilities. We have provided source code
+
+                        <p>All the flagged programs are simple, short C programs with
+                            (mostly) clear security vulnerabilities. Further, we have provided source code
                             and a build script that compiles all the targets. Your exploits must work
                             against the targets as compiled and executed within the provided VM.</p>
 
@@ -603,6 +625,41 @@ execve("/bin/sh", 0, 0);</code></pre>
                         <p>Note: Tutors/TAs will not offer help for the extra credit problem.</p>
 
                         <hr>
+                        <h2 id="submission-details">Submission Details</h2>
+                        <ol>
+                            <li>
+                                Please make only one submission per team. If working in a group of 2, add your teammate using the "Add Group Member" option on Gradescope.
+                            </li>
+                            <li>Submit the following files as a group submission on Gradescope.
+                                <ul>
+                                    <li><code>sol[0-6].py</code></li>
+                                    <li><code>sol7.py</code> (only needed for EC)</li>
+                                    <li><code>cookie</code></li>
+                                </ul>
+                            </li>
+                            <li>The Gradescope autograder will not test your submission when you submit, only check for
+                                the Python solution files and
+                                whether the provided cookie is what we expect. <br />
+                                You will need to make sure you are satisfied with the correctness of your submission
+                                when you submit. <br />
+                                <b>Again, the score on Gradescope is not your score for the assignment. <br />
+                                    8.0/8.0 does not guarantee any points on the assignment, but you do need to pass the
+                                    sanity checks to have any possibility of getting points. <br />
+                                    If you do not pass the Cookie validity test, you won't pass any of the actual
+                                    tests.</b>
+                            </li>
+
+                        </ol>
+                        <p>Your files can make use of standard Python 3 libraries and the provided
+                            <code>shellcode.py</code>, but they must be otherwise self-contained. Do not modify
+                            or include the targets, build script, <code>helper.c</code>, <code>shellcode.py</code>, etc.
+                            Be
+                            sure to test that your solutions work correctly in an unmodified copy of
+                            the provided VM, without installing or updating any packages or changing
+                            any environment variables.
+                        </p>
+
+                        <hr>
                         <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
                         <p><strong>Q: I'm getting an "ignored null byte in input" but I didn't put any null bytes in my
                                 input.</strong></p>
@@ -677,7 +734,7 @@ execve("/bin/sh", 0, 0);</code></pre>
                             your file
                             without you knowing about it. See <a href="https://stackoverflow.com/a/16114535">here</a> on
                             how to resolve this using vim.</p>
-                        <p><strong>Q: I have trouble using UTM on M1 Mac or VirtualBox on other platforms. Or I want to run UTM headlessly. </strong></p>
+                        <!-- <p><strong>Q: I have trouble using UTM on M1 Mac or VirtualBox on other platforms. Or I want to run UTM headlessly. </strong></p>
                         <p>A:
                             The UTM file can work on other platforms as well but you need to install
                             <a href="https://www.qemu.org/">qemu</a> and run this command in the same directory where you stored the .utm file: (UTM is just a wrapper around qemu)<br>
@@ -691,39 +748,9 @@ execve("/bin/sh", 0, 0);</code></pre>
                             </code>
                             <br>
                             To Run it headlessly, add <code>-nographic -device sga</code> to the argument list.
-                        </p>
+                        </p> -->
                         <hr />
 
-                        <h2 id="submission-details">Submission Details</h2>
-                        <ol>
-                            <li>Submit the following files as a group submission on Gradescope.
-                                <ul>
-                                    <li><code>sol[0-6].py</code></li>
-                                    <li><code>sol7.py</code> (only needed for EC)</li>
-                                    <li><code>cookie</code></li>
-                                </ul>
-                            </li>
-                            <li>The Gradescope autograder will not test your submission when you submit, only check for
-                                the Python solution files and
-                                whether the provided cookie is what we expect. <br />
-                                You will need to make sure you are satisfied with the correctness of your submission
-                                when you submit. <br />
-                                <b>Again, the score on Gradescope is not your score for the assignment and is not
-                                    related to your score. <br />
-                                    8.0/8.0 does not guarantee any points on the assignment, but you do need to pass the
-                                    sanity checks to have any possibility of getting points. <br />
-                                    If you do not pass the Cookie validity test, you won't pass any of the actual
-                                    tests.</b>
-                            </li>
-                        </ol>
-                        <p>Your files can make use of standard Python 3 libraries and the provided
-                            <code>shellcode.py</code>, but they must be otherwise self-contained. Do not modify
-                            or include the targets, build script, <code>helper.c</code>, <code>shellcode.py</code>, etc.
-                            Be
-                            sure to test that your solutions work correctly in an unmodified copy of
-                            the provided VM, without installing or updating any packages or changing
-                            any environment variables.
-                        </p>
                     </div>
                 </div>
             </div>
